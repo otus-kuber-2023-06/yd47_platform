@@ -1,0 +1,7 @@
+dist: bionic
+language: bash
+sudo: required
+
+before_install:
+  - curl https://raw.githubusercontent.com/express42/otus-homeworks/2023-03/run.sh | bash
+  
