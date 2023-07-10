@@ -17,7 +17,7 @@ spec:
     command: ['sh', '-c', 'wget -O- https://tinyurl.com/otus-k8s-intro | sh']
     volumeMounts:
     - name: workdir
-      mountPath: "/app"
+      mountPath: /app
   volumes:
   - name: workdir
     emptyDir: {}
