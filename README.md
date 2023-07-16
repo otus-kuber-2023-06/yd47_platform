@@ -17,6 +17,7 @@ yd47 Platform repository
   - создавать pod из манифеста;
   - смотреть логи и события по pod'am (describe, logs)
   - запускать предполетные :) подготовки с директивой initContainers
+
 ```
 ## kubernetes-controllers
 2023-07-15 Сделал занятия из kubernetes-controllers:
