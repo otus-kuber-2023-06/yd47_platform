@@ -17,8 +17,8 @@ yd47 Platform repository
   - создавать pod из манифеста;
   - смотреть логи и события по pod'am (describe, logs)
   - запускать предполетные :) подготовки с директивой initContainers
-
 ```
+
 ## kubernetes-controllers
 2023-07-15 Сделал задания из kubernetes-controllers:
 ```
@@ -29,8 +29,8 @@ yd47 Platform repository
   - Daemonset - pod'ы, которые всегда будут добавляться на ноды кластера;
   - Обновление приложений с помощью Deployment, проверка успешности, откаты;
   - Стратегии обновления приложений
-```
 
+```
 ## kubernetes-networks
 2023-07-22 Сделал задания из kubernetes-controllers:
 ```
