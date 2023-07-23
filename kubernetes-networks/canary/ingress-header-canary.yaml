@@ -1,0 +1,23 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress 
+metadata:
+  name: web
+  annotations:
+    kubernetes.io/ingress.class: "nginx"
+    nginx.ingress.kubernetes.io/rewrite-target: /
+    nginx.ingress.kubernetes.io/canary: "true"
+    # Set the request header to foo. 
+    nginx.ingress.kubernetes.io/canary-by-header: "foo"
+    # Only requests whose headers are foo and header values are bar are forwarded to the new-nginx Service. 
+    nginx.ingress.kubernetes.io/canary-by-header-value: "bar"
+spec:
+  rules:
+    - http:
+        paths:
+          - path: /canary
+            pathType: Prefix
+            backend:
+              service:
+                name: canary-app
+                port:
+                  number: 80
