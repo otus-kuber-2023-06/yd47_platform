@@ -3,9 +3,9 @@ yd47 Platform repository
 
 ## Worklog
 
-Урок 2. [kubernetes-intro](#kubernetes-intro)
-Урок 3. [kubernetes-controllers](#kubernetes-controllers)
-Урок 4. [kubernetes-networks](#kubernetes-networks)
+- Урок 2. [kubernetes-intro](#kubernetes-intro)
+- Урок 3. [kubernetes-controllers](#kubernetes-controllers)
+- Урок 4. [kubernetes-networks](#kubernetes-networks)
 
 ## kubernetes-intro
 2023-07-09 Сделал задания из kubernetes-intro: 
