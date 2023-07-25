@@ -7,6 +7,7 @@ yd47 Platform repository
 - Урок 3. [kubernetes-controllers](#kubernetes-controllers)
 - Урок 4. [kubernetes-networks](#kubernetes-networks)
 - Урок 5. [kubernetes-volumes](#kubernetes-volumes)
+- Урок 6. [kubernetes-security](#kubernetes-security)
 
 ## kubernetes-intro
 2023-07-09 Сделал задания из kubernetes-intro: 
@@ -30,8 +31,8 @@ yd47 Platform repository
   - Daemonset - pod'ы, которые всегда будут добавляться на ноды кластера;
   - Обновление приложений с помощью Deployment, проверка успешности, откаты;
   - Стратегии обновления приложений
-
 ```
+
 ## kubernetes-networks
 2023-07-22 Сделал задания из kubernetes-networks:
 ```
@@ -54,3 +55,10 @@ yd47 Platform repository
   - создание pv и pvc;
   - политики переиспользования PV, режимы доступа
 ```
+
+## kubernetes-security
+2023-07-25 Сделал задания из kubernetes-security:
+```
+Изучил:
+  - создание Roles и clusterRole - доступ/ограничение к ресурсам в рамках ns/cluster;
+  - RBAC: связку ServiceAccount и Role через ClusterRoleBinding
