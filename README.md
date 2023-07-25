@@ -6,6 +6,7 @@ yd47 Platform repository
 - Урок 2. [kubernetes-intro](#kubernetes-intro)
 - Урок 3. [kubernetes-controllers](#kubernetes-controllers)
 - Урок 4. [kubernetes-networks](#kubernetes-networks)
+- Урок 5. [kubernetes-volumes](#kubernetes-volumes)
 
 ## kubernetes-intro
 2023-07-09 Сделал задания из kubernetes-intro: 
@@ -32,7 +33,7 @@ yd47 Platform repository
 
 ```
 ## kubernetes-networks
-2023-07-22 Сделал задания из kubernetes-controllers:
+2023-07-22 Сделал задания из kubernetes-networks:
 ```
 Изучил:
   - readinessProbe (готовность принимать запросы) и livenessProbe (что процесс живой);
@@ -41,4 +42,15 @@ yd47 Platform repository
   - Установку MetalLB;
   - Установку kubernetes-dashboard;
   - Канареечный деплой
+```
+
+## kubernetes-volumes
+2023-07-23 Сделал задания из kubernetes-volumes:
+```
+Изучил:
+  - StatefulSet;
+  - работу с secret;
+  - типы volumes; 
+  - создание pv и pvc;
+  - политики переиспользования PV, режимы доступа
 ```
