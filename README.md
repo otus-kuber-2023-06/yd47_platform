@@ -6,7 +6,8 @@ yd47 Platform repository
 - Урок 2. [kubernetes-intro](#kubernetes-intro)
 - Урок 3. [kubernetes-controllers](#kubernetes-controllers)
 - Урок 4. [kubernetes-networks](#kubernetes-networks)
-- Урок 5. [kubernetes-security](#kubernetes-security)
+- Урок 5. [kubernetes-volumes](#kubernetes-volumes)
+- Урок 6. [kubernetes-security](#kubernetes-security)
 
 ## kubernetes-intro
 2023-07-09 Сделал задания из kubernetes-intro: 
@@ -44,10 +45,20 @@ yd47 Platform repository
   - Канареечный деплой
 ```
 
+## kubernetes-volumes
+2023-07-23 Сделал задания из kubernetes-volumes:
+```
+Изучил:
+  - StatefulSet;
+  - работу с secret;
+  - типы volumes; 
+  - создание pv и pvc;
+  - политики переиспользования PV, режимы доступа
+```
+
 ## kubernetes-security
 2023-07-25 Сделал задания из kubernetes-security:
 ```
 Изучил:
   - создание Roles и clusterRole - доступ/ограничение к ресурсам в рамках ns/cluster;
   - RBAC: связку ServiceAccount и Role через ClusterRoleBinding
-```
