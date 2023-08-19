@@ -1,0 +1,4 @@
+resources:
+  - cartservice-deployment.yaml
+  - cartservice-service.yaml
+namespace: hipster-shop
