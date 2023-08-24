@@ -1,0 +1,19 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress 
+metadata:
+  name: hipster-shop-frontend
+  annotations:
+    kubernetes.io/ingress.class: "nginx"
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  rules:
+    - host: shop.158.160.40.68.nip.io
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: frontend
+                port:
+                  number: 80

@@ -1,0 +1,19 @@
+# frontend
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: frontend
+  labels:
+    app: frontend
+spec:
+  type: {{ .Values.service.type | default "ClusterIP" }}
+  selector:
+    app: frontend
+  ports:
+  - name: http
+    port: {{ .Values.service.port | default 80 }}
+    targetPort: {{ .Values.service.targetPort | default 8080 }}
+    {{ if eq .Values.service.type "nodePort" }}
+    nodePort: {{ .Values.service.NodePort }}
+    {{ end }}

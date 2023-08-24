@@ -1,0 +1,7 @@
+resources:
+  - cartservice-deployment.yaml
+  - cartservice-service.yaml
+namespace: hipster-shop-prod
+commonLabels:
+  env: prod
+namePrefix: prod-

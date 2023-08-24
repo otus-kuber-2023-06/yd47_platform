@@ -8,6 +8,7 @@ yd47 Platform repository
 - Урок 4. [kubernetes-networks](#kubernetes-networks)
 - Урок 5. [kubernetes-volumes](#kubernetes-volumes)
 - Урок 6. [kubernetes-security](#kubernetes-security)
+- Урок 7. [kubernetes-templating](#kubernetes-templating)
 
 ## kubernetes-intro
 2023-07-09 Сделал задания из kubernetes-intro: 
@@ -62,3 +63,11 @@ yd47 Platform repository
 Изучил:
   - создание Roles и clusterRole - доступ/ограничение к ресурсам в рамках ns/cluster;
   - RBAC: связку ServiceAccount и Role через ClusterRoleBinding
+
+## kubernetes-templating
+2023-08-19 Сделал задания из kubernetes-templating:
+```
+Изучил:
+  - работу с helm, helmfile, kubecfg, kustomize;
+  - научился работать с cert-manager и chartmuseum
+```
