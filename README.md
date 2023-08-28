@@ -9,6 +9,7 @@ yd47 Platform repository
 - Урок 5. [kubernetes-volumes](#kubernetes-volumes)
 - Урок 6. [kubernetes-security](#kubernetes-security)
 - Урок 7. [kubernetes-templating](#kubernetes-templating)
+- Урок 8. [kubernetes-operators](#kubernetes-operators)
 
 ## kubernetes-intro
 2023-07-09 Сделал задания из kubernetes-intro: 
@@ -70,4 +71,12 @@ yd47 Platform repository
 Изучил:
   - работу с helm, helmfile, kubecfg, kustomize;
   - научился работать с cert-manager и chartmuseum
+```
+
+## kubernetes-operators
+2023-08-28 Сделал задания из kubernetes-operators:
+```
+Изучил:
+  - создание CR и описание его в CRD;
+  - создание k8s оператора
 ```
