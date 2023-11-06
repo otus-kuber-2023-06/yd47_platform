@@ -1,0 +1,192 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: hw8-ns
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hw8-dp
+  namespace: hw8-ns
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: hw8-pod
+  template:
+    metadata:
+      name: hw8-pod
+      labels:
+        app: hw8-pod
+      annotations:
+        prometheus.io/scrape: "true"
+        prometheus.io/port: "9113"
+    spec:
+      containers:
+      - image: hardkov/otus-hw8:v0.0.1
+        name: hw8-container
+        ports:
+        - containerPort: 8000
+      # описание nginx-exporter
+      - name: nginx-exporter
+        image: nginx/nginx-prometheus-exporter:0.10.0
+        args: ["-nginx.scrape-uri", "http://localhost:8000/basic_status"]
+        ports:
+          - containerPort: 9113
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: hw8-svc
+  namespace: hw8-ns
+spec:
+  selector:
+    app: hw8-pod
+  type: ClusterIP
+  ports:
+    - name: hw8-svc-port
+      protocol: TCP
+      port: 80
+      targetPort: 9113
+
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: pv-data
+  namespace: hw8-ns
+  labels:
+    type: host
+    app: prometheus-deployment
+spec:
+  capacity:
+    storage: 1Gi
+  accessModes:
+    - ReadWriteMany
+  # не использовать такой тип хранилища в проде
+  # здесь используется в рамках обучения
+  hostPath:
+    path: "/data/promdata"
+
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: pvc-data
+  namespace: hw8-ns
+  labels:
+    app: prometheus-deployment
+spec:
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 500Mi
+
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: prometheus
+rules:
+- apiGroups: [""]
+  resources:
+  - nodes
+  - services
+  - endpoints
+  - pods
+  verbs: ["get", "list", "watch"]
+- apiGroups:
+  - extensions
+  resources:
+  - ingresses
+  verbs: ["get", "list", "watch"]
+
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: prometheus
+  namespace: hw8-ns
+
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: prometheus
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: prometheus
+subjects:
+- kind: ServiceAccount
+  name: prometheus
+  namespace: hw8-ns
+
+---
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: hw8-svc-mon
+  namespace: hw8-ns
+  labels:
+    team: frontend
+spec:
+  selector:
+    matchLabels:
+      app: hw8-svc
+  endpoints:
+  - port: hw8-svc-port
+
+---
+apiVersion: monitoring.coreos.com/v1
+kind: Prometheus
+metadata:
+  name: prometheus
+  namespace: hw8-ns
+spec:
+  serviceAccountName: prometheus
+  serviceMonitorSelector:
+    matchLabels:
+      team: frontend
+  resources:
+    requests:
+      memory: 400Mi
+  enableAdminAPI: false
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: prometheus
+  namespace: hw8-ns
+spec:
+  type: ClusterIP
+  ports:
+  - name: web
+    port: 9090
+    targetPort: web
+  selector:
+    prometheus: prometheus
+
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: prometheus-ingress
+  namespace: hw8-ns
+  annotations:
+    kubernetes.io/ingress.class: "nginx"
+spec:
+  rules:
+    - http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: prometheus
+                port:
+                  number: 9090
