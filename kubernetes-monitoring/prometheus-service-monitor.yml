@@ -2,6 +2,14 @@ apiVersion: v1
 kind: Namespace
 metadata:
   name: hw8-ns
+  labels:
+    monitoring: "true"
+
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: monitoring
 
 ---
 apiVersion: apps/v1
@@ -41,6 +49,8 @@ kind: Service
 metadata:
   name: hw8-svc
   namespace: hw8-ns
+  labels:
+    app: hw8-svc
 spec:
   selector:
     app: hw8-pod
@@ -56,7 +66,7 @@ apiVersion: v1
 kind: PersistentVolume
 metadata:
   name: pv-data
-  namespace: hw8-ns
+  namespace: monitoring
   labels:
     type: host
     app: prometheus-deployment
@@ -75,7 +85,7 @@ apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
   name: pvc-data
-  namespace: hw8-ns
+  namespace: monitoring
   labels:
     app: prometheus-deployment
 spec:
@@ -109,7 +119,7 @@ apiVersion: v1
 kind: ServiceAccount
 metadata:
   name: prometheus
-  namespace: hw8-ns
+  namespace: monitoring
 
 ---
 apiVersion: rbac.authorization.k8s.io/v1
@@ -123,7 +133,7 @@ roleRef:
 subjects:
 - kind: ServiceAccount
   name: prometheus
-  namespace: hw8-ns
+  namespace: monitoring
 
 ---
 apiVersion: monitoring.coreos.com/v1
@@ -145,23 +155,26 @@ apiVersion: monitoring.coreos.com/v1
 kind: Prometheus
 metadata:
   name: prometheus
-  namespace: hw8-ns
+  namespace: monitoring
 spec:
   serviceAccountName: prometheus
+  serviceMonitorNamespaceSelector:
+    matchLabels:
+      monitoring: "true"
   serviceMonitorSelector:
     matchLabels:
       team: frontend
   resources:
     requests:
       memory: 400Mi
-  enableAdminAPI: false
+  enableAdminAPI: true
 
 ---
 apiVersion: v1
 kind: Service
 metadata:
   name: prometheus
-  namespace: hw8-ns
+  namespace: monitoring
 spec:
   type: ClusterIP
   ports:
@@ -176,7 +189,7 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: prometheus-ingress
-  namespace: hw8-ns
+  namespace: monitoring
   annotations:
     kubernetes.io/ingress.class: "nginx"
 spec:
