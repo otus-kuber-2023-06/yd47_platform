@@ -1,0 +1,18 @@
+#Service Monitor for nginx controller
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: ingress-nginx-metrics
+  namespace: observability
+  labels:
+    release: prometheus
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/component: controller
+      app.kubernetes.io/instance: ingress-nginx
+  namespaceSelector:
+    matchNames:
+      - ingress-nginx
+  endpoints:
+    - port: metrics

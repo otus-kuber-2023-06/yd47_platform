@@ -10,6 +10,8 @@ yd47 Platform repository
 - Урок 6. [kubernetes-security](#kubernetes-security)
 - Урок 7. [kubernetes-templating](#kubernetes-templating)
 - Урок 8. [kubernetes-operators](#kubernetes-operators)
+- Урок 9. [kubernetes-monitoring](#kubernetes-monitoring)
+- Урок 10. [kubernetes-logging](#kubernetes-logging)
 
 ## kubernetes-intro
 2023-07-09 Сделал задания из kubernetes-intro: 
@@ -64,6 +66,7 @@ yd47 Platform repository
 Изучил:
   - создание Roles и clusterRole - доступ/ограничение к ресурсам в рамках ns/cluster;
   - RBAC: связку ServiceAccount и Role через ClusterRoleBinding
+```
 
 ## kubernetes-templating
 2023-08-19 Сделал задания из kubernetes-templating:
@@ -79,4 +82,23 @@ yd47 Platform repository
 Изучил:
   - создание CR и описание его в CRD;
   - создание k8s оператора
+```
+
+## kubernetes-monitoring
+2023-11 Сделал задания из kubernetes-monitoring:
+```
+Изучил:
+  - деплой prometheus стека в кубер;
+  - автообнаружение сервисов и pod'ов через оператор
+```
+
+## kubernetes-logging
+2023-12 Сделал задания из kubernetes-logging:
+```
+Изучил:
+  - создание managed-cluster в ручном режиме в ЯОблаке;
+  - проклятие нод через taints и толерантность pod'ов к проклятиям;
+  - познакомился с возможность упереться в квоты ЯО;
+  - установку EFK стека в k8s;
+  - еще раз посмотрел на деплой prometheus, подключение ServiceMonitor и static_configs
 ```

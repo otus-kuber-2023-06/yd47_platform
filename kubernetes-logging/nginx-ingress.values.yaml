@@ -1,0 +1,33 @@
+controller:
+  replicaCount: 3
+
+  tolerations:
+    - key: node-role
+      operator: Equal
+      value: infra
+      effect: NoSchedule
+
+  config:
+    log-format-upstream: '{"time": "$time_iso8601", "x_forwarded_for": "$proxy_add_x_forwarded_for", "request_id": "$req_id", "bytes_sent": $bytes_sent, "request_time": $request_time, "status": $status, "vhost": "$host", "request_proto": "$server_protocol", "path": "$uri", "request_length": $request_length, "duration": $request_time,"method": "$request_method", "http_referrer": "$http_referer", "http_user_agent": "$http_user_agent" }'
+    log-format-escape-json: 'true'
+
+  metrics: 
+    enabled: true
+    serviceMonitor:
+      enabled: true
+
+  affinity:
+    podAntiAffinity:
+      preferredDuringSchedulingIgnoredDuringExecution:
+      - weight: 100
+        podAffinityTerm:
+          labelSelector:
+            matchExpressions:
+            - key: app
+              operator: In
+              values:
+              - nginx-ingress
+          topologyKey: kubernetes.io/hostname
+
+  nodeSelector:
+    yandex.cloud/node-group-id: catsreg1vb9ju02ho8vh

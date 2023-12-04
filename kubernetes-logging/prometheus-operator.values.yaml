@@ -1,0 +1,17 @@
+prometheus:
+  prometheusSpec:
+    additionalScrapeConfigs:
+    - job_name: static_configs/elasticsearch-exporter-prometheus-elasticsearch-exporter/0
+      metrics_path: /metrics
+      static_configs:
+       - targets:
+           - elasticsearch-exporter-prometheus-elasticsearch-exporter:9108
+
+grafana:
+  additionalDataSources:
+    - name: Loki
+      editable: true
+      type: loki
+      url: http://loki-read.svc.kubercluster.local:3100
+      jsonData:
+        maxLines: 1000
