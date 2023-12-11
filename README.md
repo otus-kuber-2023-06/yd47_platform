@@ -11,6 +11,7 @@ yd47 Platform repository
 - Урок 7. [kubernetes-templating](#kubernetes-templating)
 - Урок 8. [kubernetes-operators](#kubernetes-operators)
 - Урок 9. [kubernetes-monitoring](#kubernetes-monitoring)
+- Урок 10. [kubernetes-logging](#kubernetes-logging)
 
 ## kubernetes-intro
 2023-07-09 Сделал задания из kubernetes-intro: 
@@ -89,4 +90,15 @@ yd47 Platform repository
 Изучил:
   - деплой prometheus стека в кубер;
   - автообнаружение сервисов и pod'ов через оператор
+```
+
+## kubernetes-logging
+2023-12 Сделал задания из kubernetes-logging:
+```
+Изучил:
+  - создание managed-cluster в ручном режиме в ЯОблаке;
+  - проклятие нод через taints и толерантность pod'ов к проклятиям;
+  - познакомился с возможность упереться в квоты ЯО;
+  - установку EFK стека в k8s;
+  - еще раз посмотрел на деплой prometheus, подключение ServiceMonitor и static_configs
 ```
