@@ -1,0 +1,14 @@
+*/g_*.tf
+*/g_*r.tf
+*/g_*.tfvars
+*/.terraform
+*/.terraform.lock.hcl
+*/terraform.tfstate
+*/terraform.tfstate.backup
+*/*/g_*.tf
+*/*/g_*r.tf
+*/*/g_*.tfvars
+*/*/.terraform
+*/*/.terraform.lock.hcl
+*/*/terraform.tfstate
+*/*/terraform.tfstate.backup

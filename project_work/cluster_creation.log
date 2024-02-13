@@ -1,0 +1,936 @@
+Running with gitlab-runner 16.8.0 (c72a09b6)
+  on blade1-docker iFDwpoH5, system ID: s_057c773552e6
+Preparing the "docker" executor
+00:01
+Using Docker executor with image docker.cc.naumen.ru/terraform-provider:latest ...
+Pulling docker image docker.cc.naumen.ru/terraform-provider:latest ...
+Using docker image sha256:f83b1b2054cf261e01ded9054a9fbab47869a242602aeec59090a9be597ce51f for docker.cc.naumen.ru/terraform-provider:latest with digest docker.cc.naumen.ru/terraform-provider@sha256:fd81e845c8472b7073fd37278d7769c8bfdbc901d4cc6c0c09f448b6a8fdb9e0 ...
+Preparing environment
+00:00
+Running on runner-ifdwpoh5-project-1166-concurrent-0 via host1...
+Getting source from Git repository
+00:01
+Fetching changes with git depth set to 20...
+Reinitialized existing Git repository in /builds/infrastructure/terraform/.git/
+Checking out b1ad444c as detached HEAD (ref is create_nodes)...
+Removing yandex-cloud/k8s-cluster/.terraform.lock.hcl
+Removing yandex-cloud/k8s-cluster/.terraform/
+Removing yandex-cloud/k8s-cluster/g_common.tfvars
+Removing yandex-cloud/k8s-cluster/g_provider.tf
+Removing yandex-cloud/k8s-cluster/g_variables.tf
+Removing yandex-cloud/k8s-nodes/.terraform.lock.hcl
+Removing yandex-cloud/k8s-nodes/.terraform/
+Removing yandex-cloud/k8s-nodes/g_common.tfvars
+Removing yandex-cloud/k8s-nodes/g_provider.tf
+Removing yandex-cloud/k8s-nodes/g_variables.tf
+Removing yandex-cloud/network/.terraform.lock.hcl
+Removing yandex-cloud/network/.terraform/
+Removing yandex-cloud/network/g_common.tfvars
+Removing yandex-cloud/network/g_provider.tf
+Removing yandex-cloud/network/g_variables.tf
+Removing yandex-cloud/routing_and_acl/.terraform.lock.hcl
+Removing yandex-cloud/routing_and_acl/.terraform/
+Removing yandex-cloud/routing_and_acl/g_common.tfvars
+Removing yandex-cloud/routing_and_acl/g_provider.tf
+Removing yandex-cloud/routing_and_acl/g_variables.tf
+Skipping Git submodules setup
+Executing "step_script" stage of the job script
+07:30
+Using docker image sha256:f83b1b2054cf261e01ded9054a9fbab47869a242602aeec59090a9be597ce51f for docker.cc.naumen.ru/terraform-provider:latest with digest docker.cc.naumen.ru/terraform-provider@sha256:fd81e845c8472b7073fd37278d7769c8bfdbc901d4cc6c0c09f448b6a8fdb9e0 ...
+$ make k8s_m_apply
+/bin/bash .gitlab/scripts/k8s_managed_cluster.sh apply
+1707648771,start
+================================================================================
+=> Sun Feb 11 10:52:51 UTC 2024
+=> start
+1707648771,Get Tokens from Vault
+================================================================================
+=> Sun Feb 11 10:52:51 UTC 2024
+=> Get Tokens from Vault
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+100   407  100   318  100    89   2647    740 --:--:-- --:--:-- --:--:--  3420
+1707648772,apply
+================================================================================
+=> Sun Feb 11 10:52:52 UTC 2024
+=> apply
+time=2024-02-11T10:52:52Z level=info msg=The stack at /builds/infrastructure/terraform will be processed in the following order for command apply:
+Group 1
+- Module /builds/infrastructure/terraform/yandex-cloud/network
+Group 2
+- Module /builds/infrastructure/terraform/yandex-cloud/routing_and_acl
+Group 3
+- Module /builds/infrastructure/terraform/yandex-cloud/k8s-cluster
+Group 4
+- Module /builds/infrastructure/terraform/yandex-cloud/k8s-nodes
+Initializing the backend...
+Successfully configured the backend "s3"! Terraform will automatically
+use this backend unless the backend configuration changes.
+Initializing provider plugins...
+- Finding local-registry.com/yandex-cloud/yandex versions matching "0.105.0"...
+- Installing local-registry.com/yandex-cloud/yandex v0.105.0...
+- Installed local-registry.com/yandex-cloud/yandex v0.105.0 (unauthenticated)
+Terraform has created a lock file .terraform.lock.hcl to record the provider
+selections it made above. Include this file in your version control repository
+so that Terraform can guarantee to make the same selections by default when
+you run "terraform init" in the future.
+╷
+│ Warning: Incomplete lock file information for providers
+│ 
+│ Due to your customized provider installation methods, Terraform was forced
+│ to calculate lock file checksums locally for the following providers:
+│   - local-registry.com/yandex-cloud/yandex
+│ 
+│ The current .terraform.lock.hcl file only includes checksums for
+│ linux_amd64, so Terraform running on another platform will fail to install
+│ these providers.
+│ 
+│ To calculate additional checksums for another platform, run:
+│   terraform providers lock -platform=linux_amd64
+│ (where linux_amd64 is the platform to generate)
+╵
+Terraform has been successfully initialized!
+You may now begin working with Terraform. Try running "terraform plan" to see
+any changes that are required for your infrastructure. All Terraform commands
+should now work.
+If you ever set or change modules or backend configuration for Terraform,
+rerun this command to reinitialize your working directory. If you forget, other
+commands will detect it and remind you to do so if necessary.
+Terraform used the selected providers to generate the following execution
+plan. Resource actions are indicated with the following symbols:
+  + create
+Terraform will perform the following actions:
+  # yandex_vpc_address.public_addr["ingress_lb_zone_ru_central1_a"] will be created
+  + resource "yandex_vpc_address" "public_addr" {
+      + created_at          = (known after apply)
+      + deletion_protection = (known after apply)
+      + folder_id           = (known after apply)
+      + id                  = (known after apply)
+      + labels              = (known after apply)
+      + name                = "ingress_lb_zone_ru_central1_a"
+      + reserved            = (known after apply)
+      + used                = (known after apply)
+      + external_ipv4_address {
+          + address                  = (known after apply)
+          + ddos_protection_provider = (known after apply)
+          + outgoing_smtp_capability = (known after apply)
+          + zone_id                  = "ru-central1-a"
+        }
+    }
+  # yandex_vpc_network.network-main will be created
+  + resource "yandex_vpc_network" "network-main" {
+      + created_at                = (known after apply)
+      + default_security_group_id = (known after apply)
+      + folder_id                 = (known after apply)
+      + id                        = (known after apply)
+      + labels                    = (known after apply)
+      + name                      = "mynet"
+      + subnet_ids                = (known after apply)
+    }
+  # yandex_vpc_subnet.subnet-main["k8s_master_zone_a"] will be created
+  + resource "yandex_vpc_subnet" "subnet-main" {
+      + created_at     = (known after apply)
+      + folder_id      = (known after apply)
+      + id             = (known after apply)
+      + labels         = (known after apply)
+      + name           = "k8s_master_zone_a"
+      + network_id     = (known after apply)
+      + v4_cidr_blocks = [
+          + "10.0.1.0/28",
+        ]
+      + v6_cidr_blocks = (known after apply)
+      + zone           = "ru-central1-a"
+    }
+  # yandex_vpc_subnet.subnet-main["k8s_master_zone_b"] will be created
+  + resource "yandex_vpc_subnet" "subnet-main" {
+      + created_at     = (known after apply)
+      + folder_id      = (known after apply)
+      + id             = (known after apply)
+      + labels         = (known after apply)
+      + name           = "k8s_master_zone_b"
+      + network_id     = (known after apply)
+      + v4_cidr_blocks = [
+          + "10.0.2.0/28",
+        ]
+      + v6_cidr_blocks = (known after apply)
+      + zone           = "ru-central1-b"
+    }
+  # yandex_vpc_subnet.subnet-main["k8s_master_zone_d"] will be created
+  + resource "yandex_vpc_subnet" "subnet-main" {
+      + created_at     = (known after apply)
+      + folder_id      = (known after apply)
+      + id             = (known after apply)
+      + labels         = (known after apply)
+      + name           = "k8s_master_zone_d"
+      + network_id     = (known after apply)
+      + v4_cidr_blocks = [
+          + "10.0.3.0/28",
+        ]
+      + v6_cidr_blocks = (known after apply)
+      + zone           = "ru-central1-d"
+    }
+  # yandex_vpc_subnet.subnet-main["k8s_worker_zone_a"] will be created
+  + resource "yandex_vpc_subnet" "subnet-main" {
+      + created_at     = (known after apply)
+      + folder_id      = (known after apply)
+      + id             = (known after apply)
+      + labels         = (known after apply)
+      + name           = "k8s_worker_zone_a"
+      + network_id     = (known after apply)
+      + v4_cidr_blocks = [
+          + "10.0.4.0/28",
+        ]
+      + v6_cidr_blocks = (known after apply)
+      + zone           = "ru-central1-a"
+    }
+  # yandex_vpc_subnet.subnet-main["k8s_worker_zone_b"] will be created
+  + resource "yandex_vpc_subnet" "subnet-main" {
+      + created_at     = (known after apply)
+      + folder_id      = (known after apply)
+      + id             = (known after apply)
+      + labels         = (known after apply)
+      + name           = "k8s_worker_zone_b"
+      + network_id     = (known after apply)
+      + v4_cidr_blocks = [
+          + "10.0.5.0/28",
+        ]
+      + v6_cidr_blocks = (known after apply)
+      + zone           = "ru-central1-b"
+    }
+  # yandex_vpc_subnet.subnet-main["k8s_worker_zone_d"] will be created
+  + resource "yandex_vpc_subnet" "subnet-main" {
+      + created_at     = (known after apply)
+      + folder_id      = (known after apply)
+      + id             = (known after apply)
+      + labels         = (known after apply)
+      + name           = "k8s_worker_zone_d"
+      + network_id     = (known after apply)
+      + v4_cidr_blocks = [
+          + "10.0.6.0/28",
+        ]
+      + v6_cidr_blocks = (known after apply)
+      + zone           = "ru-central1-d"
+    }
+Plan: 8 to add, 0 to change, 0 to destroy.
+Changes to Outputs:
+  + k8s_masters_subnet_info = [
+      + {
+          + subnet_id = (known after apply)
+          + zone      = "ru-central1-a"
+        },
+      + {
+          + subnet_id = (known after apply)
+          + zone      = "ru-central1-b"
+        },
+      + {
+          + subnet_id = (known after apply)
+          + zone      = "ru-central1-d"
+        },
+    ]
+  + k8s_workers_subnet_info = [
+      + {
+          + subnet_id = (known after apply)
+          + zone      = "ru-central1-a"
+        },
+      + {
+          + subnet_id = (known after apply)
+          + zone      = "ru-central1-b"
+        },
+      + {
+          + subnet_id = (known after apply)
+          + zone      = "ru-central1-d"
+        },
+    ]
+  + network-main-id         = (known after apply)
+  + subnets_cidr            = [
+      + "10.0.1.0/28",
+      + "10.0.2.0/28",
+      + "10.0.3.0/28",
+      + "10.0.4.0/28",
+      + "10.0.5.0/28",
+      + "10.0.6.0/28",
+    ]
+yandex_vpc_network.network-main: Creating...
+yandex_vpc_address.public_addr["ingress_lb_zone_ru_central1_a"]: Creating...
+yandex_vpc_address.public_addr["ingress_lb_zone_ru_central1_a"]: Creation complete after 2s [id=e9bmrlrmcq8t1v3ql3mg]
+yandex_vpc_network.network-main: Creation complete after 3s [id=enprf10i19vcsplge9jv]
+yandex_vpc_subnet.subnet-main["k8s_worker_zone_b"]: Creating...
+yandex_vpc_subnet.subnet-main["k8s_master_zone_d"]: Creating...
+yandex_vpc_subnet.subnet-main["k8s_worker_zone_a"]: Creating...
+yandex_vpc_subnet.subnet-main["k8s_worker_zone_d"]: Creating...
+yandex_vpc_subnet.subnet-main["k8s_master_zone_b"]: Creating...
+yandex_vpc_subnet.subnet-main["k8s_master_zone_a"]: Creating...
+yandex_vpc_subnet.subnet-main["k8s_worker_zone_b"]: Creation complete after 0s [id=e2lubtf967l0pp3v7csc]
+yandex_vpc_subnet.subnet-main["k8s_master_zone_a"]: Creation complete after 1s [id=e9bidp4dk68af48n99be]
+yandex_vpc_subnet.subnet-main["k8s_worker_zone_a"]: Creation complete after 2s [id=e9bfocf4i3tffpce92ev]
+yandex_vpc_subnet.subnet-main["k8s_worker_zone_d"]: Creation complete after 3s [id=fl8f6rja8sgl9r3m94i0]
+yandex_vpc_subnet.subnet-main["k8s_master_zone_d"]: Creation complete after 3s [id=fl8ui74d4oj8u921jvi1]
+yandex_vpc_subnet.subnet-main["k8s_master_zone_b"]: Creation complete after 4s [id=e2l44vmhiehmjsnl08ii]
+Apply complete! Resources: 8 added, 0 changed, 0 destroyed.
+Outputs:
+k8s_masters_subnet_info = [
+  {
+    "subnet_id" = "e9bidp4dk68af48n99be"
+    "zone" = "ru-central1-a"
+  },
+  {
+    "subnet_id" = "e2l44vmhiehmjsnl08ii"
+    "zone" = "ru-central1-b"
+  },
+  {
+    "subnet_id" = "fl8ui74d4oj8u921jvi1"
+    "zone" = "ru-central1-d"
+  },
+]
+k8s_workers_subnet_info = [
+  {
+    "subnet_id" = "e9bfocf4i3tffpce92ev"
+    "zone" = "ru-central1-a"
+  },
+  {
+    "subnet_id" = "e2lubtf967l0pp3v7csc"
+    "zone" = "ru-central1-b"
+  },
+  {
+    "subnet_id" = "fl8f6rja8sgl9r3m94i0"
+    "zone" = "ru-central1-d"
+  },
+]
+network-main-id = "enprf10i19vcsplge9jv"
+subnets_cidr = [
+  "10.0.1.0/28",
+  "10.0.2.0/28",
+  "10.0.3.0/28",
+  "10.0.4.0/28",
+  "10.0.5.0/28",
+  "10.0.6.0/28",
+]
+Initializing the backend...
+Successfully configured the backend "s3"! Terraform will automatically
+use this backend unless the backend configuration changes.
+Initializing provider plugins...
+- Finding local-registry.com/yandex-cloud/yandex versions matching "0.105.0"...
+- Installing local-registry.com/yandex-cloud/yandex v0.105.0...
+- Installed local-registry.com/yandex-cloud/yandex v0.105.0 (unauthenticated)
+Terraform has created a lock file .terraform.lock.hcl to record the provider
+selections it made above. Include this file in your version control repository
+so that Terraform can guarantee to make the same selections by default when
+you run "terraform init" in the future.
+╷
+│ Warning: Incomplete lock file information for providers
+│ 
+│ Due to your customized provider installation methods, Terraform was forced
+│ to calculate lock file checksums locally for the following providers:
+│   - local-registry.com/yandex-cloud/yandex
+│ 
+│ The current .terraform.lock.hcl file only includes checksums for
+│ linux_amd64, so Terraform running on another platform will fail to install
+│ these providers.
+│ 
+│ To calculate additional checksums for another platform, run:
+│   terraform providers lock -platform=linux_amd64
+│ (where linux_amd64 is the platform to generate)
+╵
+Terraform has been successfully initialized!
+You may now begin working with Terraform. Try running "terraform plan" to see
+any changes that are required for your infrastructure. All Terraform commands
+should now work.
+If you ever set or change modules or backend configuration for Terraform,
+rerun this command to reinitialize your working directory. If you forget, other
+commands will detect it and remind you to do so if necessary.
+Terraform used the selected providers to generate the following execution
+plan. Resource actions are indicated with the following symbols:
+  + create
+Terraform will perform the following actions:
+  # yandex_vpc_security_group.internal will be created
+  + resource "yandex_vpc_security_group" "internal" {
+      + created_at  = (known after apply)
+      + description = "Managed by terraform"
+      + folder_id   = (known after apply)
+      + id          = (known after apply)
+      + labels      = {
+          + "firewall" = "yc_internal"
+        }
+      + name        = "internal"
+      + network_id  = "enprf10i19vcsplge9jv"
+      + status      = (known after apply)
+      + egress {
+          + description       = "self"
+          + from_port         = 0
+          + id                = (known after apply)
+          + labels            = (known after apply)
+          + port              = -1
+          + predefined_target = "self_security_group"
+          + protocol          = "ANY"
+          + to_port           = 65535
+          + v4_cidr_blocks    = []
+          + v6_cidr_blocks    = []
+        }
+      + ingress {
+          + description       = "self"
+          + from_port         = 0
+          + id                = (known after apply)
+          + labels            = (known after apply)
+          + port              = -1
+          + predefined_target = "self_security_group"
+          + protocol          = "ANY"
+          + to_port           = 65535
+          + v4_cidr_blocks    = []
+          + v6_cidr_blocks    = []
+        }
+      + ingress {
+          + description    = "Правило разрешает взаимодействие под-под и сервис-сервис. Укажите подсети вашего кластера и сервисов. P.s. Правило избыточно и добавлено только потому, что политика self_security_group не функционирует как положено между машинами в разных регионах."
+          + from_port      = 0
+          + id             = (known after apply)
+          + labels         = (known after apply)
+          + port           = -1
+          + protocol       = "ANY"
+          + to_port        = 65535
+          + v4_cidr_blocks = [
+              + "10.0.1.0/28",
+              + "10.0.2.0/28",
+              + "10.0.3.0/28",
+              + "10.0.4.0/28",
+              + "10.0.5.0/28",
+              + "10.0.6.0/28",
+            ]
+          + v6_cidr_blocks = []
+        }
+    }
+  # yandex_vpc_security_group.k8s_master will be created
+  + resource "yandex_vpc_security_group" "k8s_master" {
+      + created_at  = (known after apply)
+      + description = "Managed by terraform"
+      + folder_id   = (known after apply)
+      + id          = (known after apply)
+      + labels      = {
+          + "firewall" = "k8s-master"
+        }
+      + name        = "k8s-master"
+      + network_id  = "enprf10i19vcsplge9jv"
+      + status      = (known after apply)
+      + ingress {
+          + description       = "access to api k8s from Yandex lb"
+          + from_port         = 0
+          + id                = (known after apply)
+          + labels            = (known after apply)
+          + port              = -1
+          + predefined_target = "loadbalancer_healthchecks"
+          + protocol          = "TCP"
+          + to_port           = 65535
+          + v4_cidr_blocks    = []
+          + v6_cidr_blocks    = []
+        }
+      + ingress {
+          + description    = "access to api k8s"
+          + from_port      = -1
+          + id             = (known after apply)
+          + labels         = (known after apply)
+          + port           = 443
+          + protocol       = "TCP"
+          + to_port        = -1
+          + v4_cidr_blocks = [
+              + "91.232.196.0/24",
+              + "212.220.212.214/32",
+            ]
+          + v6_cidr_blocks = []
+        }
+    }
+  # yandex_vpc_security_group.k8s_worker will be created
+  + resource "yandex_vpc_security_group" "k8s_worker" {
+      + created_at  = (known after apply)
+      + description = "Managed by terraform"
+      + folder_id   = (known after apply)
+      + id          = (known after apply)
+      + labels      = {
+          + "firewall" = "k8s-worker"
+        }
+      + name        = "k8s-worker"
+      + network_id  = "enprf10i19vcsplge9jv"
+      + status      = (known after apply)
+      + egress {
+          + description    = "any connections"
+          + from_port      = 0
+          + id             = (known after apply)
+          + labels         = (known after apply)
+          + port           = -1
+          + protocol       = "ANY"
+          + to_port        = 65535
+          + v4_cidr_blocks = [
+              + "0.0.0.0/0",
+            ]
+          + v6_cidr_blocks = []
+        }
+      + ingress {
+          + description    = "any connections"
+          + from_port      = 0
+          + id             = (known after apply)
+          + labels         = (known after apply)
+          + port           = -1
+          + protocol       = "ANY"
+          + to_port        = 65535
+          + v4_cidr_blocks = [
+              + "0.0.0.0/0",
+            ]
+          + v6_cidr_blocks = []
+        }
+    }
+Plan: 3 to add, 0 to change, 0 to destroy.
+Changes to Outputs:
+  + sg_internal-id   = (known after apply)
+  + sg_k8s_master-id = (known after apply)
+  + sg_k8s_worker-id = (known after apply)
+yandex_vpc_security_group.k8s_worker: Creating...
+yandex_vpc_security_group.k8s_master: Creating...
+yandex_vpc_security_group.internal: Creating...
+yandex_vpc_security_group.internal: Creation complete after 1s [id=enpjeaj998e6qsi8dadd]
+yandex_vpc_security_group.k8s_master: Creation complete after 3s [id=enpsmjpcp40j393iljt0]
+yandex_vpc_security_group.k8s_worker: Creation complete after 5s [id=enpd1euumsgp8globh7m]
+Apply complete! Resources: 3 added, 0 changed, 0 destroyed.
+Outputs:
+sg_internal-id = "enpjeaj998e6qsi8dadd"
+sg_k8s_master-id = "enpsmjpcp40j393iljt0"
+sg_k8s_worker-id = "enpd1euumsgp8globh7m"
+Initializing the backend...
+Successfully configured the backend "s3"! Terraform will automatically
+use this backend unless the backend configuration changes.
+Initializing provider plugins...
+- Finding local-registry.com/yandex-cloud/yandex versions matching "0.105.0"...
+- Installing local-registry.com/yandex-cloud/yandex v0.105.0...
+- Installed local-registry.com/yandex-cloud/yandex v0.105.0 (unauthenticated)
+Terraform has created a lock file .terraform.lock.hcl to record the provider
+selections it made above. Include this file in your version control repository
+so that Terraform can guarantee to make the same selections by default when
+you run "terraform init" in the future.
+╷
+│ Warning: Incomplete lock file information for providers
+│ 
+│ Due to your customized provider installation methods, Terraform was forced
+│ to calculate lock file checksums locally for the following providers:
+│   - local-registry.com/yandex-cloud/yandex
+│ 
+│ The current .terraform.lock.hcl file only includes checksums for
+│ linux_amd64, so Terraform running on another platform will fail to install
+│ these providers.
+│ 
+│ To calculate additional checksums for another platform, run:
+│   terraform providers lock -platform=linux_amd64
+│ (where linux_amd64 is the platform to generate)
+╵
+Terraform has been successfully initialized!
+You may now begin working with Terraform. Try running "terraform plan" to see
+any changes that are required for your infrastructure. All Terraform commands
+should now work.
+If you ever set or change modules or backend configuration for Terraform,
+rerun this command to reinitialize your working directory. If you forget, other
+commands will detect it and remind you to do so if necessary.
+Terraform used the selected providers to generate the following execution
+plan. Resource actions are indicated with the following symbols:
+  + create
+Terraform will perform the following actions:
+  # yandex_iam_service_account.sa-k8s-master will be created
+  + resource "yandex_iam_service_account" "sa-k8s-master" {
+      + created_at  = (known after apply)
+      + description = "K8S regional master service account"
+      + folder_id   = (known after apply)
+      + id          = (known after apply)
+      + name        = "sa-k8s-master"
+    }
+  # yandex_kms_symmetric_key.kms-key will be created
+  + resource "yandex_kms_symmetric_key" "kms-key" {
+      + created_at          = (known after apply)
+      + default_algorithm   = "AES_128"
+      + deletion_protection = false
+      + folder_id           = (known after apply)
+      + id                  = (known after apply)
+      + name                = "kms-key"
+      + rotated_at          = (known after apply)
+      + rotation_period     = "8760h"
+      + status              = (known after apply)
+    }
+  # yandex_kms_symmetric_key_iam_binding.viewer will be created
+  + resource "yandex_kms_symmetric_key_iam_binding" "viewer" {
+      + id               = (known after apply)
+      + members          = (known after apply)
+      + role             = "kms.viewer"
+      + symmetric_key_id = (known after apply)
+    }
+  # yandex_kubernetes_cluster.k8s-regional will be created
+  + resource "yandex_kubernetes_cluster" "k8s-regional" {
+      + cluster_ipv4_range       = (known after apply)
+      + cluster_ipv6_range       = (known after apply)
+      + created_at               = (known after apply)
+      + description              = (known after apply)
+      + folder_id                = (known after apply)
+      + health                   = (known after apply)
+      + id                       = (known after apply)
+      + labels                   = (known after apply)
+      + log_group_id             = (known after apply)
+      + name                     = (known after apply)
+      + network_id               = "enprf10i19vcsplge9jv"
+      + network_policy_provider  = "CALICO"
+      + node_ipv4_cidr_mask_size = 24
+      + node_service_account_id  = (known after apply)
+      + release_channel          = (known after apply)
+      + service_account_id       = (known after apply)
+      + service_ipv4_range       = (known after apply)
+      + service_ipv6_range       = (known after apply)
+      + status                   = (known after apply)
+      + kms_provider {
+          + key_id = (known after apply)
+        }
+      + master {
+          + cluster_ca_certificate = (known after apply)
+          + etcd_cluster_size      = (known after apply)
+          + external_v4_address    = (known after apply)
+          + external_v4_endpoint   = (known after apply)
+          + external_v6_endpoint   = (known after apply)
+          + internal_v4_address    = (known after apply)
+          + internal_v4_endpoint   = (known after apply)
+          + public_ip              = true
+          + security_group_ids     = [
+              + "enpjeaj998e6qsi8dadd",
+              + "enpsmjpcp40j393iljt0",
+            ]
+          + version                = "1.28"
+          + version_info           = (known after apply)
+          + regional {
+              + region = "ru-central1"
+              + location {
+                  + subnet_id = "e9bidp4dk68af48n99be"
+                  + zone      = "ru-central1-a"
+                }
+              + location {
+                  + subnet_id = "e2l44vmhiehmjsnl08ii"
+                  + zone      = "ru-central1-b"
+                }
+              + location {
+                  + subnet_id = "fl8ui74d4oj8u921jvi1"
+                  + zone      = "ru-central1-d"
+                }
+            }
+        }
+    }
+  # yandex_resourcemanager_folder_iam_binding.agent will be created
+  + resource "yandex_resourcemanager_folder_iam_binding" "agent" {
+      + folder_id = "b1g2v50d0ub5tj26clup"
+      + id        = (known after apply)
+      + members   = (known after apply)
+      + role      = "k8s.clusters.agent"
+    }
+  # yandex_resourcemanager_folder_iam_binding.images-puller will be created
+  + resource "yandex_resourcemanager_folder_iam_binding" "images-puller" {
+      + folder_id = "b1g2v50d0ub5tj26clup"
+      + id        = (known after apply)
+      + members   = (known after apply)
+      + role      = "container-registry.images.puller"
+    }
+  # yandex_resourcemanager_folder_iam_binding.publicAdmin will be created
+  + resource "yandex_resourcemanager_folder_iam_binding" "publicAdmin" {
+      + folder_id = "b1g2v50d0ub5tj26clup"
+      + id        = (known after apply)
+      + members   = (known after apply)
+      + role      = "vpc.publicAdmin"
+    }
+Plan: 7 to add, 0 to change, 0 to destroy.
+Changes to Outputs:
+  + k8s-cluster-id = (known after apply)
+  + master_version = "1.28"
+yandex_iam_service_account.sa-k8s-master: Creating...
+yandex_kms_symmetric_key.kms-key: Creating...
+yandex_kms_symmetric_key.kms-key: Creation complete after 1s [id=abjf1ionqg7i0tg3lltj]
+yandex_iam_service_account.sa-k8s-master: Creation complete after 3s [id=ajesjmnvcv8nqk34r3ks]
+yandex_kms_symmetric_key_iam_binding.viewer: Creating...
+yandex_resourcemanager_folder_iam_binding.publicAdmin: Creating...
+yandex_resourcemanager_folder_iam_binding.images-puller: Creating...
+yandex_resourcemanager_folder_iam_binding.agent: Creating...
+yandex_resourcemanager_folder_iam_binding.agent: Creation complete after 2s [id=b1g2v50d0ub5tj26clup/k8s.clusters.agent]
+yandex_kms_symmetric_key_iam_binding.viewer: Creation complete after 3s [id=abjf1ionqg7i0tg3lltj/kms.viewer]
+yandex_resourcemanager_folder_iam_binding.images-puller: Creation complete after 5s [id=b1g2v50d0ub5tj26clup/container-registry.images.puller]
+yandex_resourcemanager_folder_iam_binding.publicAdmin: Creation complete after 7s [id=b1g2v50d0ub5tj26clup/vpc.publicAdmin]
+yandex_kubernetes_cluster.k8s-regional: Creating...
+yandex_kubernetes_cluster.k8s-regional: Still creating... [10s elapsed]
+yandex_kubernetes_cluster.k8s-regional: Still creating... [20s elapsed]
+yandex_kubernetes_cluster.k8s-regional: Still creating... [30s elapsed]
+yandex_kubernetes_cluster.k8s-regional: Still creating... [40s elapsed]
+yandex_kubernetes_cluster.k8s-regional: Still creating... [50s elapsed]
+yandex_kubernetes_cluster.k8s-regional: Still creating... [1m0s elapsed]
+yandex_kubernetes_cluster.k8s-regional: Still creating... [1m10s elapsed]
+yandex_kubernetes_cluster.k8s-regional: Still creating... [1m20s elapsed]
+yandex_kubernetes_cluster.k8s-regional: Still creating... [1m30s elapsed]
+yandex_kubernetes_cluster.k8s-regional: Still creating... [1m40s elapsed]
+yandex_kubernetes_cluster.k8s-regional: Still creating... [1m50s elapsed]
+yandex_kubernetes_cluster.k8s-regional: Still creating... [2m0s elapsed]
+yandex_kubernetes_cluster.k8s-regional: Still creating... [2m10s elapsed]
+yandex_kubernetes_cluster.k8s-regional: Still creating... [2m20s elapsed]
+yandex_kubernetes_cluster.k8s-regional: Still creating... [2m30s elapsed]
+yandex_kubernetes_cluster.k8s-regional: Still creating... [2m40s elapsed]
+yandex_kubernetes_cluster.k8s-regional: Still creating... [2m50s elapsed]
+yandex_kubernetes_cluster.k8s-regional: Still creating... [3m0s elapsed]
+yandex_kubernetes_cluster.k8s-regional: Still creating... [3m10s elapsed]
+yandex_kubernetes_cluster.k8s-regional: Still creating... [3m20s elapsed]
+yandex_kubernetes_cluster.k8s-regional: Still creating... [3m30s elapsed]
+yandex_kubernetes_cluster.k8s-regional: Still creating... [3m40s elapsed]
+yandex_kubernetes_cluster.k8s-regional: Still creating... [3m50s elapsed]
+yandex_kubernetes_cluster.k8s-regional: Still creating... [4m0s elapsed]
+yandex_kubernetes_cluster.k8s-regional: Still creating... [4m10s elapsed]
+yandex_kubernetes_cluster.k8s-regional: Still creating... [4m20s elapsed]
+yandex_kubernetes_cluster.k8s-regional: Still creating... [4m30s elapsed]
+yandex_kubernetes_cluster.k8s-regional: Still creating... [4m40s elapsed]
+yandex_kubernetes_cluster.k8s-regional: Still creating... [4m50s elapsed]
+yandex_kubernetes_cluster.k8s-regional: Creation complete after 4m54s [id=catru52v0p0pgesic85c]
+Apply complete! Resources: 7 added, 0 changed, 0 destroyed.
+Outputs:
+k8s-cluster-id = "catru52v0p0pgesic85c"
+master_version = "1.28"
+Initializing the backend...
+Successfully configured the backend "s3"! Terraform will automatically
+use this backend unless the backend configuration changes.
+Initializing provider plugins...
+- Finding local-registry.com/yandex-cloud/yandex versions matching "0.105.0"...
+- Installing local-registry.com/yandex-cloud/yandex v0.105.0...
+- Installed local-registry.com/yandex-cloud/yandex v0.105.0 (unauthenticated)
+Terraform has created a lock file .terraform.lock.hcl to record the provider
+selections it made above. Include this file in your version control repository
+so that Terraform can guarantee to make the same selections by default when
+you run "terraform init" in the future.
+╷
+│ Warning: Incomplete lock file information for providers
+│ 
+│ Due to your customized provider installation methods, Terraform was forced
+│ to calculate lock file checksums locally for the following providers:
+│   - local-registry.com/yandex-cloud/yandex
+│ 
+│ The current .terraform.lock.hcl file only includes checksums for
+│ linux_amd64, so Terraform running on another platform will fail to install
+│ these providers.
+│ 
+│ To calculate additional checksums for another platform, run:
+│   terraform providers lock -platform=linux_amd64
+│ (where linux_amd64 is the platform to generate)
+╵
+Terraform has been successfully initialized!
+You may now begin working with Terraform. Try running "terraform plan" to see
+any changes that are required for your infrastructure. All Terraform commands
+should now work.
+If you ever set or change modules or backend configuration for Terraform,
+rerun this command to reinitialize your working directory. If you forget, other
+commands will detect it and remind you to do so if necessary.
+Terraform used the selected providers to generate the following execution
+plan. Resource actions are indicated with the following symbols:
+  + create
+Terraform will perform the following actions:
+  # yandex_kubernetes_node_group.my_node_groups["node-group-a"] will be created
+  + resource "yandex_kubernetes_node_group" "my_node_groups" {
+      + cluster_id        = "catru52v0p0pgesic85c"
+      + created_at        = (known after apply)
+      + description       = (known after apply)
+      + id                = (known after apply)
+      + instance_group_id = (known after apply)
+      + labels            = (known after apply)
+      + name              = "node-group-a"
+      + status            = (known after apply)
+      + version           = "1.28"
+      + version_info      = (known after apply)
+      + allocation_policy {
+          + location {
+              + subnet_id = (known after apply)
+              + zone      = "ru-central1-a"
+            }
+        }
+      + instance_template {
+          + metadata                  = (known after apply)
+          + name                      = "worker-a-{instance.short_id}"
+          + nat                       = (known after apply)
+          + network_acceleration_type = (known after apply)
+          + platform_id               = "standard-v1"
+          + boot_disk {
+              + size = 32
+              + type = "network-hdd"
+            }
+          + network_interface {
+              + ipv4               = true
+              + ipv6               = (known after apply)
+              + nat                = true
+              + security_group_ids = [
+                  + "enpd1euumsgp8globh7m",
+                  + "enpjeaj998e6qsi8dadd",
+                ]
+              + subnet_ids         = [
+                  + "e9bfocf4i3tffpce92ev",
+                ]
+            }
+          + resources {
+              + core_fraction = (known after apply)
+              + cores         = 2
+              + gpus          = 0
+              + memory        = 2
+            }
+          + scheduling_policy {
+              + preemptible = false
+            }
+        }
+      + scale_policy {
+          + auto_scale {
+              + initial = 1
+              + max     = 3
+              + min     = 1
+            }
+        }
+    }
+  # yandex_kubernetes_node_group.my_node_groups["node-group-b"] will be created
+  + resource "yandex_kubernetes_node_group" "my_node_groups" {
+      + cluster_id        = "catru52v0p0pgesic85c"
+      + created_at        = (known after apply)
+      + description       = (known after apply)
+      + id                = (known after apply)
+      + instance_group_id = (known after apply)
+      + labels            = (known after apply)
+      + name              = "node-group-b"
+      + status            = (known after apply)
+      + version           = "1.28"
+      + version_info      = (known after apply)
+      + allocation_policy {
+          + location {
+              + subnet_id = (known after apply)
+              + zone      = "ru-central1-b"
+            }
+        }
+      + instance_template {
+          + metadata                  = (known after apply)
+          + name                      = "worker-b-{instance.short_id}"
+          + nat                       = (known after apply)
+          + network_acceleration_type = (known after apply)
+          + platform_id               = "standard-v1"
+          + boot_disk {
+              + size = 32
+              + type = "network-hdd"
+            }
+          + network_interface {
+              + ipv4               = true
+              + ipv6               = (known after apply)
+              + nat                = true
+              + security_group_ids = [
+                  + "enpd1euumsgp8globh7m",
+                  + "enpjeaj998e6qsi8dadd",
+                ]
+              + subnet_ids         = [
+                  + "e2lubtf967l0pp3v7csc",
+                ]
+            }
+          + resources {
+              + core_fraction = (known after apply)
+              + cores         = 2
+              + gpus          = 0
+              + memory        = 2
+            }
+          + scheduling_policy {
+              + preemptible = false
+            }
+        }
+      + scale_policy {
+          + fixed_scale {
+              + size = 1
+            }
+        }
+    }
+  # yandex_kubernetes_node_group.my_node_groups["node-group-d"] will be created
+  + resource "yandex_kubernetes_node_group" "my_node_groups" {
+      + cluster_id        = "catru52v0p0pgesic85c"
+      + created_at        = (known after apply)
+      + description       = (known after apply)
+      + id                = (known after apply)
+      + instance_group_id = (known after apply)
+      + labels            = (known after apply)
+      + name              = "node-group-d"
+      + status            = (known after apply)
+      + version           = "1.28"
+      + version_info      = (known after apply)
+      + allocation_policy {
+          + location {
+              + subnet_id = (known after apply)
+              + zone      = "ru-central1-d"
+            }
+        }
+      + instance_template {
+          + metadata                  = (known after apply)
+          + name                      = "worker-d-{instance.short_id}"
+          + nat                       = (known after apply)
+          + network_acceleration_type = (known after apply)
+          + platform_id               = "standard-v1"
+          + boot_disk {
+              + size = 32
+              + type = "network-hdd"
+            }
+          + network_interface {
+              + ipv4               = true
+              + ipv6               = (known after apply)
+              + nat                = true
+              + security_group_ids = [
+                  + "enpd1euumsgp8globh7m",
+                  + "enpjeaj998e6qsi8dadd",
+                ]
+              + subnet_ids         = [
+                  + "fl8f6rja8sgl9r3m94i0",
+                ]
+            }
+          + resources {
+              + core_fraction = (known after apply)
+              + cores         = 2
+              + gpus          = 0
+              + memory        = 2
+            }
+          + scheduling_policy {
+              + preemptible = false
+            }
+        }
+      + scale_policy {
+          + fixed_scale {
+              + size = 1
+            }
+        }
+    }
+Plan: 3 to add, 0 to change, 0 to destroy.
+yandex_kubernetes_node_group.my_node_groups["node-group-a"]: Creating...
+yandex_kubernetes_node_group.my_node_groups["node-group-b"]: Creating...
+yandex_kubernetes_node_group.my_node_groups["node-group-d"]: Creating...
+yandex_kubernetes_node_group.my_node_groups["node-group-b"]: Still creating... [10s elapsed]
+yandex_kubernetes_node_group.my_node_groups["node-group-a"]: Still creating... [10s elapsed]
+yandex_kubernetes_node_group.my_node_groups["node-group-a"]: Still creating... [20s elapsed]
+yandex_kubernetes_node_group.my_node_groups["node-group-b"]: Still creating... [20s elapsed]
+yandex_kubernetes_node_group.my_node_groups["node-group-b"]: Still creating... [30s elapsed]
+yandex_kubernetes_node_group.my_node_groups["node-group-a"]: Still creating... [30s elapsed]
+yandex_kubernetes_node_group.my_node_groups["node-group-a"]: Still creating... [40s elapsed]
+yandex_kubernetes_node_group.my_node_groups["node-group-b"]: Still creating... [40s elapsed]
+yandex_kubernetes_node_group.my_node_groups["node-group-b"]: Still creating... [50s elapsed]
+yandex_kubernetes_node_group.my_node_groups["node-group-a"]: Still creating... [50s elapsed]
+yandex_kubernetes_node_group.my_node_groups["node-group-a"]: Still creating... [1m0s elapsed]
+yandex_kubernetes_node_group.my_node_groups["node-group-b"]: Still creating... [1m0s elapsed]
+yandex_kubernetes_node_group.my_node_groups["node-group-b"]: Still creating... [1m10s elapsed]
+yandex_kubernetes_node_group.my_node_groups["node-group-a"]: Still creating... [1m10s elapsed]
+yandex_kubernetes_node_group.my_node_groups["node-group-a"]: Still creating... [1m20s elapsed]
+yandex_kubernetes_node_group.my_node_groups["node-group-b"]: Still creating... [1m20s elapsed]
+yandex_kubernetes_node_group.my_node_groups["node-group-b"]: Still creating... [1m30s elapsed]
+yandex_kubernetes_node_group.my_node_groups["node-group-a"]: Still creating... [1m30s elapsed]
+yandex_kubernetes_node_group.my_node_groups["node-group-a"]: Still creating... [1m40s elapsed]
+yandex_kubernetes_node_group.my_node_groups["node-group-b"]: Still creating... [1m40s elapsed]
+yandex_kubernetes_node_group.my_node_groups["node-group-b"]: Still creating... [1m50s elapsed]
+yandex_kubernetes_node_group.my_node_groups["node-group-a"]: Still creating... [1m50s elapsed]
+yandex_kubernetes_node_group.my_node_groups["node-group-b"]: Creation complete after 1m52s [id=catmekfa4uj0d44pbjcr]
+yandex_kubernetes_node_group.my_node_groups["node-group-a"]: Still creating... [2m0s elapsed]
+yandex_kubernetes_node_group.my_node_groups["node-group-a"]: Creation complete after 2m3s [id=catu98vr8magljjmtkr1]
+yandex_kubernetes_node_group.my_node_groups["node-group-d"]: Still creating... [2m20s elapsed]
+yandex_kubernetes_node_group.my_node_groups["node-group-d"]: Creation complete after 2m23s [id=catr5eaqsrbg7k7t3cft]
+Apply complete! Resources: 3 added, 0 changed, 0 destroyed.
+1707649221,stop
+================================================================================
+=> Sun Feb 11 11:00:06 UTC 2024
+=> stop
+1707649221,echo terragrunt status
+================================================================================
+=> Sun Feb 11 11:00:06 UTC 2024
+=> echo terragrunt status
+=>  0
+Cleaning up project directory and file based variables
+00:01
+Job succeeded

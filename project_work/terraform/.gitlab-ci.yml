@@ -1,0 +1,8 @@
+---
+stages: 
+  - apply
+  - destroy
+  - plan
+
+include:
+  - local: .gitlab/jobs/yc_k8s_managed_cluster.yml

@@ -1,0 +1,29 @@
+---
+.common_source:
+  image: docker.cc.naumen.ru/terraform-provider:latest
+  tags:
+    - docker
+
+terragrunt_apply:
+  extends: .common_source
+  stage: apply
+  script:
+    - make k8s_m_apply
+  rules:
+    - if: $cluster == "k8s_managed" && $mode == "apply"
+
+terragrunt_destroy:
+  extends: .common_source
+  stage: destroy
+  script:
+    - make k8s_m_destroy
+  rules:
+    - if: $cluster == "k8s_managed" && $mode == "destroy"
+
+terragrunt_plan:
+  extends: .common_source
+  stage: plan
+  script:
+    - make k8s_m_plan
+  rules:
+    - if: $cluster == "k8s_managed" && $mode == "plan"
