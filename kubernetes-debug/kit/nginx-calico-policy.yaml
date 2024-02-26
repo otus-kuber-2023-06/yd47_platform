@@ -1,0 +1,14 @@
+apiVersion: crd.projectcalico.org/v1
+kind: NetworkPolicy
+metadata:
+  name: nginx-calico-policy
+  labels:
+spec:
+  order: 10
+  selector: app == "nginx"
+  ingress:
+    - action: Log
+    - action: Deny
+  egress:
+    - action: Log
+    - action: Deny

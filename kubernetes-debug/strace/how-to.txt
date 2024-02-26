@@ -1,0 +1,18 @@
+Подцепляемся к контейнеру:
+```
+km debug -it hw8-dp-ccf7d6d66-h77vk --image=ubuntu:20.04 --target=hw8-container
+
+hw8-dp-ccf7d6d66-h77vk - имя pod;
+--target=hw8-container - имя контейнера в pod
+```
+
+Запускаем с profile general:
+
+```
+km debug -it hw8-dp-ccf7d6d66-h77vk --image=ubuntu:20.04 --target=hw8-container --profile=general
+
+apt update && apt install -y strace
+
+root@hw8-dp-ccf7d6d66-h77vk:/# strace -c -p 1
+strace: Process 1 attached
+```

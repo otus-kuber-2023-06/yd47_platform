@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hw8-dp
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: hw8-pod
+  template:
+    metadata:
+      name: hw8-pod
+      labels:
+        app: hw8-pod
+      annotations:
+        prometheus.io/scrape: "true"
+        prometheus.io/port: "9113"
+    spec:
+      containers:
+      - image: hardkov/otus-hw8:v0.0.1
+        name: hw8-container
+        ports:
+        - containerPort: 8000
+      # описание nginx-exporter
+      - name: nginx-exporter
+        image: nginx/nginx-prometheus-exporter:0.10.0
+        args: ["-nginx.scrape-uri", "http://localhost:8000/basic_status"]
+        ports:
+          - containerPort: 9113
