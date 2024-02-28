@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: testing-vault
+  namespace: default
+spec:
+  serviceAccountName: testing-vault-sa
+  containers:
+    - name: testing-vault
+      image: alpine
+      command: ["sh","-c","sleep infinity"]
