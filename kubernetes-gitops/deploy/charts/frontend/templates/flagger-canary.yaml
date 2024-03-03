@@ -1,0 +1,41 @@
+apiVersion: flagger.app/v1beta1
+kind: Canary
+metadata:
+  name: frontend
+  namespace: microservices-demo
+spec:
+  targetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: frontend
+  # the maximum time in seconds for the canary deployment
+  # to make progress before it is rollback (default 600s)
+  progressDeadlineSeconds: 60
+  service:
+    port: 80
+    targetPort: 8080
+    gateways:
+      - frontend
+    hosts:
+      - "*"
+    trafficPolicy:
+      tls:
+        mode: DISABLE
+    retries:
+      attempts: 3
+      perTryTimeout: 3s
+      retryOn: "gateway-error,connect-failure,refused-stream"
+  analysis:
+    interval: 1m
+    threshold: 5
+    maxWeight: 50
+    stepWeight: 25
+    metrics:
+      - name: request-success-rate
+        thresholdRange:
+          min: 99
+        interval: 1m
+      - name: request-duration
+        thresholdRange:
+          max: 500
+        interval: 30s

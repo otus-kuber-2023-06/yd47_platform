@@ -1,0 +1,5 @@
+image:
+  name: hardkov/loadgenerator
+  tag: v0.0.1
+url:
+  frontend: http://158.160.138.83/

@@ -12,6 +12,7 @@ yd47 Platform repository
 - Урок 8. [kubernetes-operators](#kubernetes-operators)
 - Урок 9. [kubernetes-monitoring](#kubernetes-monitoring)
 - Урок 10. [kubernetes-logging](#kubernetes-logging)
+- Урок 11. [kubernetes-gitops](#kubernetes-gitops)
 
 ## kubernetes-intro
 2023-07-09 Сделал задания из kubernetes-intro: 
@@ -101,4 +102,11 @@ yd47 Platform repository
   - познакомился с возможность упереться в квоты ЯО;
   - установку EFK стека в k8s;
   - еще раз посмотрел на деплой prometheus, подключение ServiceMonitor и static_configs
+```
+
+## kubernetes-gitops
+2024-02 Сделал задания из kubernetes-gitops
+```
+Изучил:
+  - работу с flux для организации Continious Delivery 
 ```
